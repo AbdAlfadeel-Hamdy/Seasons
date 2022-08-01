@@ -1,3 +1,4 @@
+import "./style/App.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import SeasonDisplay from "./SeasonDisplay";
@@ -15,11 +16,14 @@ class App extends React.Component {
       (err) => this.setState({ errorMessage: err.message })
     );
   }
-  render() {
+  renderContent() {
     if (this.state.lat) return <SeasonDisplay lat={this.state.lat} />;
     if (this.state.errorMessage)
       return <div>Error: {this.state.errorMessage}</div>;
     return <Spinner message="Please accept location request." />;
+  }
+  render() {
+    return <div className="border">{this.renderContent()}</div>;
   }
 }
 
